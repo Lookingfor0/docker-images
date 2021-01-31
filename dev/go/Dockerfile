@@ -1,7 +1,15 @@
-FROM golang:1.15-alpine
+FROM kubernetes/pause:go AS pause
 
-RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && go get github.com/go-delve/delve/cmd/dlv
+FROM golang:1.15-buster
+COPY --from=pause /pause /pause
 # GOPATH: /go
+ENV GO111MODULE=on
+ENV GOPROXY="https://goproxy.cn"
+RUN apt-get update && apt-get -y install build-essential && \
+    go get github.com/go-delve/delve/cmd/dlv
 
-CMD ["tail", "-f", "/dev/null"]
-#CMD ["dlv", "debug", "--listen", ":23456", "--build-flags=''", "."]
+# use pause instead
+# CMD ["tail", "-f", "/dev/null"]
+# CMD ["dlv", "debug", "--listen", ":23456", "--build-flags=''", "."]
+CMD ["/pause"]
+
