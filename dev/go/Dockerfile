@@ -4,3 +4,4 @@ RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && g
 # GOPATH: /go
 
 CMD ["tail", "-f", "/dev/null"]
+#CMD ["dlv", "debug", "--listen", ":23456", "--build-flags=''", "."]

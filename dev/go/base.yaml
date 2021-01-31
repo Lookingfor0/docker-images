@@ -12,7 +12,22 @@ spec:
       volumeMounts:
         - mountPath: /go/src
           name: src
+      ports:
+        - containerPort: 23456
   volumes:
     - name: src
       hostPath:
         path: /path/to/src
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-service
+spec:
+  type: NodePort
+  selector:
+    app: devpod
+  ports:
+    - port: 23456
+      targetPort: 23456
+      nodePort: 32345
