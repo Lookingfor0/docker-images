@@ -10,7 +10,7 @@ spec:
       image: dev:go15
       imagePullPolicy: Never
       volumeMounts:
-        - mountPath: /go
+        - mountPath: /go/src
           name: src
       ports:
         - containerPort: 23456
@@ -24,7 +24,7 @@ spec:
   volumes:
     - name: src
       hostPath:
-        path: /gopath
+        path: /src
 # Use kubectl port-forward instead
 # ---
 # apiVersion: v1

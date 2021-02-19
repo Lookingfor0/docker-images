@@ -23,8 +23,8 @@ nodes:
 - role: control-plane
   image: kindest/node:v1.19.7@sha256:a70639454e97a4b733f9d9b67e12c01f6b0297449d5b9cbbef87473458e26dca
   extraMounts:
-    - hostPath: /home/nihao/go
-      containerPath: /gopath
+    - hostPath: /home/nihao/go/src
+      containerPath: /src
   # extraPortMappings:
   #   - containerPort: 32345
   #     hostPort: 32345
@@ -37,10 +37,10 @@ nodes:
 - role: worker
   image: kindest/node:v1.19.7@sha256:a70639454e97a4b733f9d9b67e12c01f6b0297449d5b9cbbef87473458e26dca
   extraMounts:
-    - hostPath: /home/nihao/go
-      containerPath: /gopath
+    - hostPath: /home/nihao/go/src
+      containerPath: /src
 - role: worker
   image: kindest/node:v1.19.7@sha256:a70639454e97a4b733f9d9b67e12c01f6b0297449d5b9cbbef87473458e26dca
   extraMounts:
-    - hostPath: /home/nihao/go
-      containerPath: /gopath
+    - hostPath: /home/nihao/go/src
+      containerPath: /src
